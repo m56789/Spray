@@ -322,12 +322,12 @@ if [ "$1" == "-cisco" ] || [ "$1" == "--cisco" ] || [ "$1" == "cisco" ] ; then
             if echo $ciscologin | grep -q "SSL VPN Service" | grep "webvpn_logout" ; then
                 echo "Valid Credentials $u%$password" >> logs/spray-logs.txt
                 #added echo to print to screen
-		        echo "Valid Creds $u"
+		        echo "$u - PWND"
                 curl -s -b cookies.txt $targetlogout
             else
                 echo "Incorrect $u%$password" >> logs/spray-logs.txt
                 #added echo to print to screen
-		        echo "Incorrect $u"
+		        echo "$u - Invalid PW"
             fi
             rm -f cookies.txt
         done
